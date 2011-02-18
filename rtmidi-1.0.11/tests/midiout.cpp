@@ -7,9 +7,7 @@
 //*****************************************//
 
 #include <iostream>
-#include <cstdlib>
 #include "RtMidi.h"
-using namespace std;
 
 // Platform-dependent sleep routines.
 #if defined(__WINDOWS_MM__)
@@ -24,9 +22,8 @@ using namespace std;
 // an exception.  It offers the user a choice of MIDI ports to open.
 // It returns false if there are no ports available.
 bool chooseMidiPort( RtMidiOut *rtmidi );
-void noteOn (int);
-void noteOff (int);
-int main( int argc, int arduino, char *argv[])
+
+int main( int argc, char *argv[] )
 {
   RtMidiOut *midiout = 0;
   std::vector<unsigned char> message;
@@ -37,7 +34,7 @@ int main( int argc, int arduino, char *argv[])
   }
   catch ( RtError &error ) {
     error.printMessage();
-    exit( EXIT_FAILURE );
+    //exit( EXIT_FAILURE );
   }
 
   // Call function to select port.
@@ -62,20 +59,19 @@ int main( int argc, int arduino, char *argv[])
   message.push_back( 100 );
   midiout->sendMessage( &message );
 
-  while(1)
-  {
-    for (int ii=0;ii<28;ii++)
-    {
-      if (ii&arduino)
-      {
-	noteOn(ii);
-      }
-      else
-      {
-	noteOff(ii);
-      }
-    }
-  }
+  // Note On: 144, 64, 90
+  message[0] = 144;
+  message[1] = 64;
+  message[2] = 90;
+  midiout->sendMessage( &message );
+
+  SLEEP( 500 );
+
+  // Note Off: 128, 64, 40
+  message[0] = 128;
+  message[1] = 64;
+  message[2] = 40;
+  midiout->sendMessage( &message );
 
   // Sysex: 240, 67, 16, 4, 3, 2, 247
   message[0] = 240;
@@ -93,11 +89,12 @@ int main( int argc, int arduino, char *argv[])
   return 0;
 }
 
- bool chooseMidiPort( RtMidiOut *rtmidi )
- {
+bool chooseMidiPort( RtMidiOut *rtmidi )
+{
   std::cout << "\nWould you like to open a virtual output port? [y/N] ";
 
-  std::string keyHit="n";
+  std::string keyHit;
+  std::getline( std::cin, keyHit );
   if ( keyHit == "y" ) {
     rtmidi->openVirtualPort();
     return true;
@@ -121,34 +118,12 @@ int main( int argc, int arduino, char *argv[])
 
     do {
       std::cout << "\nChoose a port number: ";
-      i=8;
+      std::cin >> i;
     } while ( i >= nPorts );
   }
 
+  std::cout << "\n";
   rtmidi->openPort( i );
 
   return true;
-}
-void noteOn(int stair)
-{
-  RtMidiOut *midiouton = 0;
-  std::vector<unsigned char> messageon;
-  midiouton = new RtMidiOut();
-
-  messageon[0] = 144;
-  messageon[1] = (stair+29);
-  messageon[2] = 90;
-  midiouton->sendMessage( &messageon );
-}
-
-void noteOff(int stair)
-{
-  RtMidiOut *midioutoff = 0;
-  std::vector<unsigned char> messageoff;
-  midioutoff = new RtMidiOut();
-
-  messageoff[0] = 128;
-  messageoff[1] = (stair+29);
-  messageoff[2] = 40;
-  midioutoff->sendMessage( &messageoff );
 }
