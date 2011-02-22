@@ -1,0 +1,3 @@
+
+MSKIOSK
+MSKIOSK.jar,core.jar,fullscreen.jar,fullscreen.jar
