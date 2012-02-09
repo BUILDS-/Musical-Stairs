@@ -1,0 +1,5 @@
+To use read.cpp:
+1. Run ./rtmidi/configure
+2. Copy read.cpp to ./rtmidi/tests
+3. Make.
+4. You're done!
