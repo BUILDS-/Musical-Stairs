@@ -1,0 +1,162 @@
+#include <iostream>
+[[A[B#include <string>
+//#include <mysql.h>
+#include <stdio.h>
+#include <cstring>
+#include <fcntl.h> /* File control definitions */
+#include <errno.h> /* Error number definitions */
+#include <termios.h> /* POSIX terminal control definitions */
+#include <cstdlib>
+#include "RtMidi.h"
+
+
+// Platform-dependent sleep routines.
+#if defined(__WINDOWS_MM__)
+#include <windows.h>
+#define SLEEP( milliseconds ) Sleep( (DWORD) milliseconds ) 
+#else // Unix variants
+#include <unistd.h>
+#define SLEEP( milliseconds ) usleep( (unsigned long) (milliseconds * 1000.0) )
+#endif
+
+
+using namespace std;
+
+bool chooseMidiPort( RtMidiOut *rtmidi );
+void noteOn (int);
+void noteOff (int);
+
+bool chooseMidiPort( RtMidiOut *rtmidi )
+{
+  std::cout << "\nWould you like to open a virtual output port? [y/N] ";
+
+  std::string keyHit="n";
+  if ( keyHit == "y" ) {
+    rtmidi->openVirtualPort();
+    return true;
+  }
+
+  std::string portName;
+  unsigned int i = 0, nPorts = rtmidi->getPortCount();
+  if ( nPorts == 0 ) {
+    std::cout << "No output ports available!" << std::endl;
+    return false;
+  }
+
+  if ( nPorts == 1 ) {
+    std::cout << "\nOpening " << rtmidi->getPortName() << std::endl;
+  }
+  else {
+    for ( i=0; i<nPorts; i++ ) {
+      portName = rtmidi->getPortName(i);
+      std::cout << "  Output port #" << i << ": " << portName << '\n';
+    }
+
+    do {
+      std::cout << "\nChoose a port number: ";
+      i=8;
+    } while ( i >= nPorts );
+  }
+
+  rtmidi->openPort( 6 );
+
+  return true;
+}
+
+int serialport_read_until(int fd, char* buf, char until)
+{
+  char b[1];
+  int i=0;
+  do { 
+    int n = read(fd, b, 1);  // read a char at a time
+    if( n==-1) return -1;    // couldn't read
+    if( n==0 ) {
+      usleep( 10 * 1000 ); // wait 10 msec try again
+      continue;
+    }
+    buf[i] = b[0]; i++;
+  } while( b[0] != until );
+
+  buf[i] = 0;  // null terminate the string
+  return 0;
+}
+
+
+int main()
+{
+  RtMidiOut *midiout = 0;
+  std::vector<unsigned char> message(3);
+  
+  // RtMidiOut constructor
+  try {
+    midiout = new RtMidiOut();
+  }
+  catch ( RtError &error ) {
+    error.printMessage();
+    exit( EXIT_FAILURE );
+  }
+  
+  // Call function to select port.
+  try {
+    if ( chooseMidiPort( midiout ) == false ) 
+      {
+	return 0;
+      }
+  }
+  catch ( RtError &error ) {
+    error.printMessage();
+    return 0;
+  }
+  
+  cout<<"BUILDS -- Musical Stairs"<<endl;
+  
+  int fd;
+  struct termios options;
+  
+  //  fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NONBLOCK);
+  fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY);
+  tcgetattr(fd, &options);
+  
+  cfsetispeed(&options, B9600);
+  cfsetospeed(&options, B9600);
+  
+  char buf[257];
+  buf[256] = '\0';
+  int active[] = {0,0,0,0};
+  while(1)
+    {      
+      buf[0] = 0;
+      serialport_read_until(fd, buf, '\n');
+      //      printf("%s",buf);
+      
+      for(unsigned stair = 0; stair < 4; stair++)
+	{
+	  //grab stair status
+	  int status = (0x1&(buf[0] >> stair));
+	  //	  printf("%x",status);
+	  if(status)
+	    {
+	      if(!active[stair])
+		{
+		  printf("Note %d on\n",stair);
+		  message[0] = 144;
+		  message[1] = (stair+29);
+		  message[2] = 90;
+		  midiout->sendMessage(&message);
+		  active[stair] = 1;
+		}
+	    }
+	  else
+	    {
+	      printf("Note %d off\n",stair);
+	      message[0] = 128;
+	      message[1] = (stair+29);
+	      message[2] = 40;
+	      midiout->sendMessage(&message);
+	      active[stair] = 0;
+	    }
+	}	
+      //      printf("\n");
+    }
+  return 1;
+}

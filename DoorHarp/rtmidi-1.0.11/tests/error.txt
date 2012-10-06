@@ -1,0 +1,74 @@
+g++ -O3 -Wall -I.. -D__LINUX_ALSASEQ__ -o read read.cpp Release/RtMidi.o -lpthread -lasound 
+/usr/bin/ld: i386:x86-64 architecture of input file `Release/RtMidi.o' is incompatible with i386 output
+Release/RtMidi.o: In function `RtMidi::error(RtError::Type)':
+RtMidi.cpp:(.text+0x117e): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x118f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x11a1): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x11f5): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x1206): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+Release/RtMidi.o:RtMidi.cpp:(.text+0x1218): more undefined references to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)' follow
+Release/RtMidi.o: In function `RtMidiOut::sendMessage(std::vector<unsigned char, std::allocator<unsigned char> >*)':
+RtMidi.cpp:(.text+0x1370): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiOut::initialize(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+RtMidi.cpp:(.text+0x14dd): undefined reference to `operator new(unsigned long)'
+RtMidi.cpp:(.text+0x1557): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x1587): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x15b7): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::openVirtualPort(std::basic_string<char, std::char_traits<char>, std::allocator<char> >)':
+RtMidi.cpp:(.text+0x177e): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::openPort(unsigned int, std::basic_string<char, std::char_traits<char>, std::allocator<char> >)':
+RtMidi.cpp:(.text+0x1a3b): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x1a5b): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x1cb7): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x1ce0): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x1d18): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x1e0e): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::initialize(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+RtMidi.cpp:(.text+0x2083): undefined reference to `operator new(unsigned long)'
+RtMidi.cpp:(.text+0x213f): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::getMessage(std::vector<unsigned char, std::allocator<unsigned char> >*)':
+RtMidi.cpp:(.text+0x232f): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::cancelCallback()':
+RtMidi.cpp:(.text+0x23ef): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::setCallback(void (*)(double, std::vector<unsigned char, std::allocator<unsigned char> >*, void*), void*)':
+RtMidi.cpp:(.text+0x243f): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `alsaMidiHandler':
+RtMidi.cpp:(.text+0x24a6): undefined reference to `operator new(unsigned long)'
+RtMidi.cpp:(.text+0x2730): undefined reference to `operator new(unsigned long)'
+RtMidi.cpp:(.text+0x2830): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x2850): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x28a8): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x2986): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x29ba): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+Release/RtMidi.o:RtMidi.cpp:(.text+0x2bfb): more undefined references to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)' follow
+Release/RtMidi.o: In function `RtMidiOut::getPortName(unsigned int)':
+RtMidi.cpp:(.text+0x2d37): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiIn::getPortName(unsigned int)':
+RtMidi.cpp:(.text+0x317b): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x318d): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x32b7): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `RtMidiOut::openPort(unsigned int, std::basic_string<char, std::char_traits<char>, std::allocator<char> >)':
+RtMidi.cpp:(.text+0x36cb): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x36eb): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text+0x381f): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x38df): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+RtMidi.cpp:(.text+0x3900): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned long)'
+Release/RtMidi.o: In function `char* std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)':
+RtMidi.cpp:(.text._ZNSs12_S_constructIPcEES0_T_S1_RKSaIcESt20forward_iterator_tag[char* std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)]+0x36): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&)'
+RtMidi.cpp:(.text._ZNSs12_S_constructIPcEES0_T_S1_RKSaIcESt20forward_iterator_tag[char* std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)]+0xc0): undefined reference to `std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&)'
+Release/RtMidi.o: In function `void std::vector<unsigned char, std::allocator<unsigned char> >::_M_assign_aux<unsigned char*>(unsigned char*, unsigned char*, std::forward_iterator_tag)':
+RtMidi.cpp:(.text._ZNSt6vectorIhSaIhEE13_M_assign_auxIPhEEvT_S4_St20forward_iterator_tag[void std::vector<unsigned char, std::allocator<unsigned char> >::_M_assign_aux<unsigned char*>(unsigned char*, unsigned char*, std::forward_iterator_tag)]+0x3c): undefined reference to `operator new(unsigned long)'
+Release/RtMidi.o: In function `void std::vector<unsigned char, std::allocator<unsigned char> >::_M_assign_aux<__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, std::forward_iterator_tag)':
+RtMidi.cpp:(.text._ZNSt6vectorIhSaIhEE13_M_assign_auxIN9__gnu_cxx17__normal_iteratorIPhS1_EEEEvT_S7_St20forward_iterator_tag[void std::vector<unsigned char, std::allocator<unsigned char> >::_M_assign_aux<__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, std::forward_iterator_tag)]+0x3c): undefined reference to `operator new(unsigned long)'
+Release/RtMidi.o: In function `void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char*, unsigned char*, std::forward_iterator_tag)':
+RtMidi.cpp:(.text._ZNSt6vectorIhSaIhEE15_M_range_insertIPhEEvN9__gnu_cxx17__normal_iteratorIS3_S1_EET_S7_St20forward_iterator_tag[void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char*, unsigned char*, std::forward_iterator_tag)]+0x81): undefined reference to `operator new(unsigned long)'
+Release/RtMidi.o: In function `std::_Deque_base<RtMidiIn::MidiMessage, std::allocator<RtMidiIn::MidiMessage> >::_M_initialize_map(unsigned long)':
+RtMidi.cpp:(.text._ZNSt11_Deque_baseIN8RtMidiIn11MidiMessageESaIS1_EE17_M_initialize_mapEm[std::_Deque_base<RtMidiIn::MidiMessage, std::allocator<RtMidiIn::MidiMessage> >::_M_initialize_map(unsigned long)]+0x34): undefined reference to `operator new(unsigned long)'
+RtMidi.cpp:(.text._ZNSt11_Deque_baseIN8RtMidiIn11MidiMessageESaIS1_EE17_M_initialize_mapEm[std::_Deque_base<RtMidiIn::MidiMessage, std::allocator<RtMidiIn::MidiMessage> >::_M_initialize_map(unsigned long)]+0x66): undefined reference to `operator new(unsigned long)'
+Release/RtMidi.o:RtMidi.cpp:(.text._ZNSt5dequeIN8RtMidiIn11MidiMessageESaIS1_EE16_M_push_back_auxERKS1_[std::deque<RtMidiIn::MidiMessage, std::allocator<RtMidiIn::MidiMessage> >::_M_push_back_aux(RtMidiIn::MidiMessage const&)]+0x53): more undefined references to `operator new(unsigned long)' follow
+Release/RtMidi.o: In function `RtError::printMessage()':
+RtMidi.cpp:(.text._ZN7RtError12printMessageEv[RtError::printMessage()]+0x1d): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text._ZN7RtError12printMessageEv[RtError::printMessage()]+0x2d): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+RtMidi.cpp:(.text._ZN7RtError12printMessageEv[RtError::printMessage()]+0x3f): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)'
+collect2: ld returned 1 exit status
+make: *** [read] Error 1
